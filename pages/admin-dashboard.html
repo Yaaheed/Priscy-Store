@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Priscy Store</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+        <nav>
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="products">Products</button>
+            <button class="tab-btn" data-tab="categories">Categories</button>
+            <button class="tab-btn" data-tab="suppliers">Suppliers</button>
+            <button class="tab-btn" data-tab="users">Users</button>
+            <button class="tab-btn" data-tab="purchases">Purchases</button>
+            <button class="tab-btn" data-tab="sales">Sales</button>
+            <button class="tab-btn" data-tab="notifications">Notifications</button>
+        </nav>
+        <main>
+            <div id="overview" class="tab-content active">
+                <div class="overview-cards">
+                    <div class="card">
+                        <h3>Total Products</h3>
+                        <p id="totalProducts">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Sales</h3>
+                        <p id="totalSales">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Suppliers</h3>
+                        <p id="totalSuppliers">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Low Stock Items</h3>
+                        <p id="lowStockCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div id="products" class="tab-content">
+                <h2>Product Management</h2>
+                <div class="search-container">
+                    <input type="text" id="productsSearch" placeholder="Search products by name, category, or supplier...">
+                </div>
+                <button id="addProductBtn">Add Product</button>
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Supplier</th>
+                            <th>Stock</th>
+                            <th>Reorder Level</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="categories" class="tab-content">
+                <h2>Category Management</h2>
+                <div class="search-container">
+                    <input type="text" id="categoriesSearch" placeholder="Search categories by name...">
+                </div>
+                <button id="addCategoryBtn">Add Category</button>
+                <table id="categoriesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="suppliers" class="tab-content">
+                <h2>Supplier Management</h2>
+                <div class="search-container">
+                    <input type="text" id="suppliersSearch" placeholder="Search suppliers by name or email...">
+                </div>
+                <button id="addSupplierBtn">Add Supplier</button>
+                <table id="suppliersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="users" class="tab-content">
+                <h2>User Management</h2>
+                <div class="search-container">
+                    <input type="text" id="usersSearch" placeholder="Search users by username or role...">
+                </div>
+                <button id="addUserBtn">Add User</button>
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="purchases" class="tab-content">
+                <h2>Purchase Management</h2>
+                <div class="search-container">
+                    <input type="text" id="purchasesSearch" placeholder="Search purchases by product or supplier...">
+                </div>
+                <button id="addPurchaseBtn">Add Purchase</button>
+                <table id="purchasesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Supplier</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="sales" class="tab-content">
+                <h2>Sales History</h2>
+                <div class="search-container">
+                    <input type="text" id="salesSearch" placeholder="Search sales by product or user...">
+                </div>
+                <table id="salesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>User</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="notifications" class="tab-content">
+                <h2>Notifications</h2>
+                <div class="search-container">
+                    <input type="text" id="notificationsSearch" placeholder="Search notifications by product or message...">
+                </div>
+                <table id="notificationsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Message</th>
+                            <th>Read</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals for forms -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="productModalTitle">Add Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId" name="id">
+                <div class="form-group">
+                    <label for="productName">Name:</label>
+                    <input type="text" id="productName" name="ProductName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category:</label>
+                    <select id="productCategory" name="CategoryID" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="productSupplier">Supplier:</label>
+                    <select id="productSupplier" name="SupplierID" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="productStock">Stock:</label>
+                    <input type="number" id="productStock" name="QuantityInStock" required>
+                </div>
+                <div class="form-group">
+                    <label for="productReorder">Reorder Level:</label>
+                    <input type="number" id="productReorder" name="ReorderLevel" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price:</label>
+                    <input type="number" step="0.01" id="productPrice" name="UnitPrice" required>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="categoryModalTitle">Add Category</h2>
+            <form id="categoryForm">
+                <input type="hidden" id="categoryId" name="id">
+                <div class="form-group">
+                    <label for="categoryName">Name:</label>
+                    <input type="text" id="categoryName" name="CategoryName" required>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supplier Modal -->
+    <div id="supplierModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="supplierModalTitle">Add Supplier</h2>
+            <form id="supplierForm">
+                <input type="hidden" id="supplierId" name="id">
+                <div class="form-group">
+                    <label for="supplierName">Name:</label>
+                    <input type="text" id="supplierName" name="SupplierName" required>
+                </div>
+                <div class="form-group">
+                    <label for="supplierEmail">Email:</label>
+                    <input type="email" id="supplierEmail" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="supplierPhone">Phone:</label>
+                    <input type="tel" id="supplierPhone" name="Phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="supplierAddress">Address:</label>
+                    <textarea id="supplierAddress" name="Address" required></textarea>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="userModalTitle">Add User</h2>
+            <form id="userForm">
+                <input type="hidden" id="userId" name="id">
+                <div class="form-group">
+                    <label for="userUsername">Username:</label>
+                    <input type="text" id="userUsername" name="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password:</label>
+                    <input type="password" id="userPassword" name="Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="userRole">Role:</label>
+                    <select id="userRole" name="Role" required>
+                        <option value="Staff">Staff</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="purchaseModalTitle">Add Purchase</h2>
+            <form id="purchaseForm">
+                <input type="hidden" id="purchaseId" name="id">
+                <div class="form-group">
+                    <label for="purchaseProduct">Product:</label>
+                    <select id="purchaseProduct" name="ProductID" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="purchaseSupplier">Supplier:</label>
+                    <select id="purchaseSupplier" name="SupplierID" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="purchaseQuantity">Quantity:</label>
+                    <input type="number" id="purchaseQuantity" name="QuantityPurchased" required>
+                </div>
+                <div class="form-group">
+                    <label for="purchasePrice">Price:</label>
+                    <input type="number" step="0.01" id="purchasePrice" name="PurchasePrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="purchaseStatus">Status:</label>
+                    <select id="purchaseStatus" name="Status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sale Modal -->
+    <div id="saleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="saleModalTitle">Edit Sale</h2>
+            <form id="saleForm">
+                <input type="hidden" id="saleId" name="id">
+                <div class="form-group">
+                    <label for="saleProduct">Product:</label>
+                    <select id="saleProduct" name="ProductID" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="saleQuantity">Quantity:</label>
+                    <input type="number" id="saleQuantity" name="QuantitySold" required>
+                </div>
+                <div class="form-group">
+                    <label for="salePrice">Price:</label>
+                    <input type="number" step="0.01" id="salePrice" name="SalePrice" required>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Appwrite SDK for Realtime -->
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@11.0.0"></script>
+    <script>
+        // This information is not sensitive as it's for client-side access.
+        // In a production app, you'd load these from a config endpoint.
+        const appwriteClient = new Appwrite.Client().setEndpoint('https://cloud.appwrite.io/v1').setProject('655e6c32a3da253053a4');
+    </script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/assets/js/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
