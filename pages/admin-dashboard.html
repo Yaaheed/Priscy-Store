@@ -39,9 +39,13 @@
                         <p id="totalSuppliers">0</p>
                     </div>
                     <div class="card">
-                        <h3>Low Stock Items</h3>
+                        <h3 id="lowStockCard">Low Stock Items</h3>
                         <p id="lowStockCount">0</p>
                     </div>
+                </div>
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <h3>Sales Last 7 Days</h3>
+                    <canvas id="salesChart"></canvas>
                 </div>
             </div>
             <div id="products" class="tab-content">
@@ -147,6 +151,14 @@
                 <h2>Sales History</h2>
                 <div class="search-container">
                     <input type="text" id="salesSearch" placeholder="Search sales by product or user...">
+                </div>
+                <div class="report-controls" style="margin: 1rem 0; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                    <span>Report:</span>
+                    <label for="salesReportStartDate">From:</label>
+                    <input type="date" id="salesReportStartDate" class="date-input">
+                    <label for="salesReportEndDate">To:</label>
+                    <input type="date" id="salesReportEndDate" class="date-input">
+                    <button id="downloadSalesReportBtn" class="action-btn">Download Report</button>
                 </div>
                 <table id="salesTable">
                     <thead>
@@ -354,11 +366,14 @@
 
     <!-- Appwrite SDK for Realtime -->
     <script src="https://cdn.jsdelivr.net/npm/appwrite@11.0.0"></script>
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // This information is not sensitive as it's for client-side access.
         // In a production app, you'd load these from a config endpoint.
         const appwriteClient = new Appwrite.Client().setEndpoint('https://cloud.appwrite.io/v1').setProject('655e6c32a3da253053a4');
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/admin.js"></script>
     <script>
